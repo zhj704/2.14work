@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style/index.css">
+    <link rel="stylesheet" href="fonts/iconfont.css">
+    <link rel="stylesheet" href="swiper/css/swiper.css">
+    <script src="script/rem.js"></script>
+
+</head>
+
+<body>
+    <div class="wrap">
+        <header class="header">
+            <ul>
+                <li><i class="icon iconfont icon-xiangzuo"></i></li>
+                <li>无连接</li>
+                <li><span><i class="icon iconfont icon-gengduo-2"></i></span><span class="col"><i class="icon iconfont icon-tongzhi"></i></span></li>
+            </ul>
+            <nav>
+                <ul id='ulist'>
+                    <li class="nav"><i class="icon iconfont icon-tianjia"></i><span>电源</span></li>
+                    <li><i class="icon iconfont icon-shouye"></i><span>首页</span></li>
+                    <li><i class="icon iconfont icon-wodedingdan"></i><span>菜单</span></li>
+                    <li><i class="icon iconfont icon-bianji1"></i><span>截屏</span></li>
+                </ul>
+            </nav>
+        </header>
+        <section class="section">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <p>电源</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <p>首页</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <p>菜单</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <p>截屏</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="footer">
+            <span class="lit"><i class="icon iconfont icon-gongzuo"></i></span>
+            <span class="big"><i class="icon iconfont icon-suiji2"></i></span>
+        </footer>
+    </div>
+    <script src="swiper/js/swiper.js"></script>
+    <script>
+        // var swiper = new Swiper('.swiper-container', {
+
+
+        //     loop: true,
+        //     pagination: {
+        //         el: "#pag",
+        //         clickable: true
+        //     }
+        // });
+
+        window.onload = function() {
+            var ulist = document.querySelectorAll('.ulist>dl')
+            var swiper = new Swiper('.swiper-container', {
+                on: {
+                    slideChangeTransitionEnd: function() {
+                        ulist.forEach((item, i) => {
+                            ulist[i].classList.remove('nav')
+                        })
+                        ulist[this.activeIndex].classList.add('nav')
+                    }
+                }
+            })
+            for (var i = 0; i < ulist.length; i++) {
+                ulist[i].index = i;
+                ulist[i].onclick = function() {
+                    ulist.forEach((item, i) => {
+                        ulist[i].classList.remove('nav')
+                    })
+                    this.classList.add('nav')
+                    mySwiper.slideTo(this.index)
+
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
